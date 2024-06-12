@@ -1,21 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import AddTodoForm from "./AddTodoForm";
+import TodoList from "./TodoList";
+import TodoStatistics from "./TodoStatistics";
 
-const data = [
-  { id: "1", title: "Learn React", isComplete: false },
-  { id: "2", title: "Build a Todo App", isComplete: false },
-  { id: "3", title: "Read JavaScript Documentation", isComplete: true },
-  { id: "4", title: "Write Unit Tests", isComplete: false },
-  { id: "5", title: "Implement Context", isComplete: true },
-  { id: "6", title: "Create Portfolio Website", isComplete: false },
-  { id: "7", title: "Learn TypeScript", isComplete: false },
-  { id: "8", title: "Refactor Codebase", isComplete: true },
-  { id: "9", title: "Optimize Performance", isComplete: false },
-  { id: "10", title: "Deploy to Production", isComplete: true },
-];
+const URL = "http://localhost:8001/data";
 
 function App() {
-  const [todos, setTodos] = useState(data);
-  const [inputValue, setInputValue] = useState("");
+  const [todos, setTodos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredTodos, setFilteredTodos] = useState([]);
+
+  useEffect(() => {
+    console.log("Welcome to the best todo app!");
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(URL);
+        const result = await response.json();
+        setTodos(result);
+        setFilteredTodos(result);
+      } catch (error) {
+        setError("Error fetching data: " + error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    setFilteredTodos(
+      todos.filter((item) =>
+        item.title.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  }, [todos, searchTerm]);
 
   function makeId(length) {
     let result = "";
@@ -33,21 +57,15 @@ function App() {
     setTodos(newTodos);
   }
 
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  function addTodo(e) {
-    e.preventDefault();
+  function addTodo(title) {
     const newTodo = {
-      id: makeId,
-      title: inputValue,
+      id: makeId(10),
+      title,
       isComplete: false,
     };
 
-    const newsTodos = [...todos, newTodo];
-    setTodos(newsTodos);
-    setInputValue("");
+    const newTodos = [...todos, newTodo];
+    setTodos(newTodos);
   }
 
   function updateTodo(todoId) {
@@ -61,6 +79,18 @@ function App() {
     setTodos(newTodos);
   }
 
+  function onChange(e) {
+    setSearchTerm(e.target.value);
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   const totalNumberOfTodos = todos.length;
   const completedTodos = todos.filter(
     (todo) => todo.isComplete === true
@@ -69,52 +99,33 @@ function App() {
 
   return (
     <>
-      <h1>TODOS!</h1>
-      <p>add todo:</p>
-      <form onSubmit={addTodo}>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleChange}
-          placeholder="enter title here..."
-        />
-        <button type="submit">add todo</button>
-      </form>
-      <ul>
-        {todos.map((todo) => {
-          return (
-            <li key={todo.id}>
-              <input
-                value={todo.id}
-                type="checkbox"
-                id={todo.id}
-                checked={todo.isComplete}
-                onChange={() => updateTodo(todo.id)}
-              />
-              <label
-                className={todo.isComplete ? "checked" : ""}
-                htmlFor={todo.id}
-              >
-                {todo.title}
-              </label>
-              <button onClick={() => removeTodo(todo.id)} className="remove">
-                remove todo
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      <main className="container">
+        <div className="left">
+          <h1>TODOS!</h1>
+          <AddTodoForm addTodo={addTodo} />
+          <div className="search">
+            <p>Search Items:</p>
+            <input
+              placeholder="search in todos..."
+              type="search"
+              onChange={onChange}
+            />
+          </div>
+          <TodoList
+            todos={filteredTodos}
+            updateTodo={updateTodo}
+            removeTodo={removeTodo}
+          />
+        </div>
 
-      <p>total todos: {totalNumberOfTodos}</p>
-      <p>total completed todos: {completedTodos}</p>
-      <p>total not completed todos: {activeTodos}</p>
-      <progress
-        id="file"
-        value={completedTodos}
-        max={totalNumberOfTodos}
-      ></progress>
-      <br />
-      <br />
+        <div className="right">
+          <TodoStatistics
+            total={totalNumberOfTodos}
+            completed={completedTodos}
+            active={activeTodos}
+          />
+        </div>
+      </main>
     </>
   );
 }
