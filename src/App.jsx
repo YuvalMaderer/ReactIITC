@@ -2,8 +2,20 @@ import { useEffect, useState } from "react";
 import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
 import TodoStatistics from "./TodoStatistics";
+import Filter from "./Filter";
 
 const URL = "http://localhost:8001/data";
+
+function makeId(length) {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -40,17 +52,6 @@ function App() {
       )
     );
   }, [todos, searchTerm]);
-
-  function makeId(length) {
-    let result = "";
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    const charactersLength = characters.length;
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-  }
 
   function removeTodo(todoId) {
     const newTodos = todos.filter((todo) => todo.id !== todoId);
@@ -103,14 +104,7 @@ function App() {
         <div className="left">
           <h1>TODOS!</h1>
           <AddTodoForm addTodo={addTodo} />
-          <div className="search">
-            <p>Search Items:</p>
-            <input
-              placeholder="search in todos..."
-              type="search"
-              onChange={onChange}
-            />
-          </div>
+          <Filter searchTerm={searchTerm} onChange={onChange} />
           <TodoList
             todos={filteredTodos}
             updateTodo={updateTodo}
