@@ -5,7 +5,7 @@ function TodoItem({ todo, updateTodo, removeTodo }) {
         type="checkbox"
         id={todo.id}
         checked={todo.isComplete}
-        onChange={() => updateTodo(todo.id)}
+        onChange={() => updateTodo(todo)}
       />
       <label
         className={`${todo.isComplete ? "checked" : ""} input-label`}

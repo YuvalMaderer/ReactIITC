@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
 import TodoStatistics from "./TodoStatistics";
 import Filter from "./Filter";
 
-const URL = "http://localhost:8001/data";
+const URL = "http://localhost:8001/data/";
 
 function makeId(length) {
   let result = "";
@@ -22,7 +22,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredTodos, setFilteredTodos] = useState([]);
 
   useEffect(() => {
     console.log("Welcome to the best todo app!");
@@ -34,7 +33,6 @@ function App() {
         const response = await fetch(URL);
         const result = await response.json();
         setTodos(result);
-        setFilteredTodos(result);
       } catch (error) {
         setError("Error fetching data: " + error.message);
       } finally {
@@ -45,40 +43,52 @@ function App() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    setFilteredTodos(
-      todos.filter((item) =>
-        item.title.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    );
+  const filteredTodos = useMemo(() => {
+    return todos.filter((todo) => {
+      return todo.title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
   }, [todos, searchTerm]);
 
-  function removeTodo(todoId) {
+  async function removeTodo(todoId) {
+    await axios.delete(URL + todoId);
     const newTodos = todos.filter((todo) => todo.id !== todoId);
     setTodos(newTodos);
   }
 
-  function addTodo(title) {
+  async function addTodo(title) {
     const newTodo = {
       id: makeId(10),
       title,
       isComplete: false,
     };
 
-    setTodos((prevTodos) => {
-      return [newTodo, ...prevTodos];
-    });
+    try {
+      await axios.post(URL, newTodo);
+
+      setTodos((prevTodos) => {
+        return [...prevTodos, newTodo];
+      });
+    } catch (err) {
+      alert(err);
+    }
   }
 
-  function updateTodo(todoId) {
-    const newTodos = todos.map((todo) => {
-      if (todoId === todo.id) {
-        return { ...todo, isComplete: !todo.isComplete };
-      }
-      return todo;
-    });
-
-    setTodos(newTodos);
+  async function updateTodo(todoToUpdate) {
+    try {
+      const { data: updateTodo } = await axios.patch(URL + todoToUpdate.id, {
+        isComplete: !todoToUpdate.isComplete,
+      });
+      setTodos((prevTodos) => {
+        return prevTodos.map((todo) => {
+          if (todo.id === todoToUpdate.id) {
+            return updateTodo;
+          }
+          return todo;
+        });
+      });
+    } catch (err) {
+      alert(err);
+    }
   }
 
   function onChange(e) {

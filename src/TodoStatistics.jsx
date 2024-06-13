@@ -1,9 +1,10 @@
 function TodoStatistics({ total, completed, active }) {
   return (
     <div>
-      <p>total todos: {total}</p>
-      <p>total completed todos: {completed}</p>
-      <p>total not completed todos: {active}</p>
+      <h2>Statistics:</h2>
+      <p>Total Todos: {total}</p>
+      <p>Completed Todos: {completed}</p>
+      <p>Active Todos: {active}</p>
       <progress id="file" value={completed} max={total}></progress>
     </div>
   );
