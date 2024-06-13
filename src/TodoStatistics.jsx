@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 function TodoStatistics({ total, completed, active }) {
   return (
     <div>
@@ -10,11 +8,5 @@ function TodoStatistics({ total, completed, active }) {
     </div>
   );
 }
-
-TodoStatistics.propTypes = {
-  total: PropTypes.func.isRequired,
-  completed: PropTypes.func.isRequired,
-  active: PropTypes.func.isRequired,
-};
 
 export default TodoStatistics;

@@ -20,7 +20,9 @@ function AddTodoForm({ addTodo }) {
         required
         ref={inputRef}
       />
-      <button type="submit">add todo</button>
+      <button className="button-29" type="submit">
+        add todo
+      </button>
     </form>
   );
 }

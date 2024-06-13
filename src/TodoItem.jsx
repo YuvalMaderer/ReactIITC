@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 function TodoItem({ todo, updateTodo, removeTodo }) {
   return (
     <li className="todo-card">
@@ -15,17 +13,11 @@ function TodoItem({ todo, updateTodo, removeTodo }) {
       >
         {todo.title}
       </label>
-      <button onClick={() => removeTodo(todo.id)} className="remove">
+      <button onClick={() => removeTodo(todo.id)} className="button-29 remove">
         remove todo
       </button>
     </li>
   );
 }
-
-TodoItem.propTypes = {
-  todo: PropTypes.func.isRequired,
-  updateTodo: PropTypes.func.isRequired,
-  removeTodo: PropTypes.func.isRequired,
-};
 
 export default TodoItem;

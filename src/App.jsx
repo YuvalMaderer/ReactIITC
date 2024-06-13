@@ -65,8 +65,9 @@ function App() {
       isComplete: false,
     };
 
-    const newTodos = [...todos, newTodo];
-    setTodos(newTodos);
+    setTodos((prevTodos) => {
+      return [newTodo, ...prevTodos];
+    });
   }
 
   function updateTodo(todoId) {
@@ -102,7 +103,14 @@ function App() {
     <>
       <main className="container">
         <div className="left">
-          <h1>TODOS!</h1>
+          <div className="flex">
+            <img
+              src="../images/OIG4.GT2WdI6vt.jpg"
+              alt="image"
+              width={"80px"}
+            />
+            <h1>TODOS!</h1>
+          </div>
           <AddTodoForm addTodo={addTodo} />
           <Filter searchTerm={searchTerm} onChange={onChange} />
           <TodoList

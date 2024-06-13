@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 function Filter({ searchTerm, onChange }) {
   return (
     <div className="search">
@@ -13,10 +11,5 @@ function Filter({ searchTerm, onChange }) {
     </div>
   );
 }
-
-Filter.propTypes = {
-  searchTerm: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
 
 export default Filter;
