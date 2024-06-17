@@ -8,6 +8,8 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -20,7 +22,17 @@ const MenuProps = {
   },
 };
 
-const categories = ["School", "Work", "Home"];
+const categories = [
+  "School",
+  "Work",
+  "Home",
+  "Business",
+  "Personal Life",
+  "Sport",
+  "Education",
+  "Friends",
+  "Kids",
+];
 
 function getStyles(name, personName, theme) {
   return {
@@ -57,43 +69,66 @@ function AddTodoForm(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
+    >
       <TextField
         id="outlined-basic"
         label="Enter title here..."
         variant="outlined"
         inputRef={inputRef}
-        sx={{ width: "40ch", marginRight: "10px" }}
+        sx={{
+          width: "100%",
+          maxWidth: "300px",
+          marginBottom: "10px",
+          marginRight: "10px",
+        }}
         required
       />
-      <Select
-        labelId="demo-multiple-chip-label"
-        id="demo-multiple-chip"
-        multiple
-        value={personName}
-        onChange={handleChange}
-        input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-        renderValue={(selected) => (
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-            {selected.map((value) => (
-              <Chip key={value} label={value} />
-            ))}
-          </Box>
-        )}
-        MenuProps={MenuProps}
+      <FormControl
+        sx={{
+          width: "100%",
+          maxWidth: "300px",
+          marginBottom: "10px",
+          marginRight: "10px",
+        }}
       >
-        {categories.map((name) => (
-          <MenuItem
-            key={name}
-            value={name}
-            style={getStyles(name, personName, theme)}
-          >
-            {name}
-          </MenuItem>
-        ))}
-      </Select>
+        <InputLabel id="demo-multiple-chip-label">Categories</InputLabel>
+        <Select
+          labelId="demo-multiple-chip-label"
+          id="demo-multiple-chip"
+          multiple
+          value={personName}
+          onChange={handleChange}
+          input={<OutlinedInput id="select-multiple-chip" label="Categories" />}
+          renderValue={(selected) => (
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+              {selected.map((value) => (
+                <Chip key={value} label={value} />
+              ))}
+            </Box>
+          )}
+          MenuProps={MenuProps}
+        >
+          {categories.map((name) => (
+            <MenuItem
+              key={name}
+              value={name}
+              style={getStyles(name, personName, theme)}
+            >
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
       <Tooltip title="Add Todo">
-        <Button variant="contained" color="primary" type="submit">
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          sx={{ height: ITEM_HEIGHT }}
+        >
           Add Todo
         </Button>
       </Tooltip>

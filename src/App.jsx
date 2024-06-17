@@ -137,49 +137,50 @@ function App() {
   return (
     <>
       <ResponsiveAppBar />
-      <main className="container">
-        <Snackbar
-          open={open}
-          autoHideDuration={3000}
-          onClose={handleClose}
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        >
-          <Alert
+      <div className="container-2">
+        <main className="container">
+          <Snackbar
+            open={open}
+            autoHideDuration={3000}
             onClose={handleClose}
-            severity={severity}
-            variant="filled"
-            sx={{ width: "100%" }}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
           >
-            {succesAlertText}
-          </Alert>
-        </Snackbar>
-        <div className="left">
-          <div className="flex">
-            <img
-              src="../images/OIG4.GT2WdI6vt.jpg"
-              alt="image"
-              width={"80px"}
+            <Alert
+              onClose={handleClose}
+              severity={severity}
+              variant="filled"
+              sx={{ width: "100%" }}
+            >
+              {succesAlertText}
+            </Alert>
+          </Snackbar>
+          <div className="left">
+            <div className="flex">
+              <img
+                src="../images/OIG4.GT2WdI6vt.jpg"
+                alt="image"
+                width={"80px"}
+              />
+              <h1>TODOS!</h1>
+            </div>
+            <AddTodoForm addTodo={addTodo} />
+            <Filter searchTerm={searchTerm} onChange={onChange} />
+            <TodoList
+              todos={filteredTodos}
+              updateTodo={updateTodo}
+              removeTodo={removeTodo}
+              loading={loading}
             />
-            <h1>TODOS!</h1>
           </div>
-          <AddTodoForm addTodo={addTodo} />
-          <Filter searchTerm={searchTerm} onChange={onChange} />
-          <TodoList
-            todos={filteredTodos}
-            updateTodo={updateTodo}
-            removeTodo={removeTodo}
-            loading={loading}
-          />
-        </div>
-
-        <div className="right">
-          <TodoStatistics
-            total={totalNumberOfTodos}
-            completed={completedTodos}
-            active={activeTodos}
-          />
-        </div>
-      </main>
+          <div className="right">
+            <TodoStatistics
+              total={totalNumberOfTodos}
+              completed={completedTodos}
+              active={activeTodos}
+            />
+          </div>
+        </main>
+      </div>
     </>
   );
 }
