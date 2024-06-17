@@ -1,10 +1,13 @@
-function Filter({ searchTerm, onChange }) {
+import TextField from "@mui/material/TextField";
+
+function Filter({ searchTerm, onChange, handleChange }) {
   return (
     <div className="search">
       <p>Search Items:</p>
-      <input
-        placeholder="search in todos..."
-        type="search"
+      <TextField
+        id="outlined-basic"
+        label="Search in todos..."
+        variant="outlined"
         value={searchTerm}
         onChange={onChange}
       />

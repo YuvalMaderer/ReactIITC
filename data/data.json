@@ -3,52 +3,119 @@
     {
       "id": "2",
       "title": "Build a Todo App",
-      "isComplete": false
+      "isComplete": true,
+      "labels": [
+        "work",
+        "home"
+      ]
     },
     {
       "id": "3",
       "title": "Read JavaScript Documentation",
-      "isComplete": true
+      "isComplete": false,
+      "labels": [
+        "school"
+      ]
     },
     {
       "id": "4",
       "title": "Write Unit Tests",
-      "isComplete": true
+      "isComplete": false,
+      "labels": [
+        "work",
+        "school"
+      ]
     },
     {
       "id": "5",
       "title": "Implement Context",
-      "isComplete": true
+      "isComplete": false,
+      "labels": [
+        "work"
+      ]
     },
     {
       "id": "6",
       "title": "Create Portfolio Website",
-      "isComplete": false
+      "isComplete": true,
+      "labels": [
+        "home"
+      ]
     },
     {
       "id": "7",
       "title": "Learn TypeScript",
-      "isComplete": false
-    },
-    {
-      "id": "8",
-      "title": "Refactor Codebase",
-      "isComplete": false
+      "isComplete": false,
+      "labels": [
+        "school",
+        "work"
+      ]
     },
     {
       "id": "9",
       "title": "Optimize Performance",
-      "isComplete": false
+      "isComplete": false,
+      "labels": [
+        "work"
+      ]
     },
     {
       "id": "10",
       "title": "Deploy to Production",
-      "isComplete": false
+      "isComplete": true,
+      "labels": [
+        "work",
+        "home"
+      ]
     },
     {
       "id": "Ek53SEvl4q",
       "title": "Learn React",
+      "isComplete": true,
+      "labels": [
+        "school",
+        "work"
+      ]
+    },
+    {
+      "id": "6wgRe5mUom",
+      "title": "sdnlkfdsnlfdnlfdnlkdsfnlsdnlsfdnsfdlnsfdldsfnklfsdnksfldnfdsklnsfdlksfndklfsdnflskdnfdsnfdslknfdslkfsdnklfsdnkfsdnfslkfndklfdnlkfdsndsflknsfdlksfdnkfsdnfdslk",
+      "isComplete": false,
+      "labels": [
+        "work"
+      ]
+    },
+    {
+      "id": "r5AdJJRYIr",
+      "title": "a sbnkdnbjsadnnadjnajnasjndajnasjknasdjknasdjkansdjkasdnjkasdnjkasdnjasdnjkasdnjasdnasdnkasdndasasadnadnaskasd",
+      "isComplete": false,
+      "labels": [
+        "home",
+        "school"
+      ]
+    },
+    {
+      "id": "dDe7YoWRpv",
+      "title": "dasdasda",
       "isComplete": false
+    },
+    {
+      "id": "IwC38fFwCM",
+      "title": "adsdasasd",
+      "isComplete": false,
+      "labels": [
+        "School",
+        "Work"
+      ]
+    },
+    {
+      "id": "9igiuHYSlQ",
+      "title": "sdfsfdsfd",
+      "isComplete": false,
+      "labels": [
+        "School",
+        "Work"
+      ]
     }
   ]
 }

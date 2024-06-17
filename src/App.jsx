@@ -3,6 +3,9 @@ import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
 import TodoStatistics from "./TodoStatistics";
 import Filter from "./Filter";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import ResponsiveAppBar from "./AppBar";
 
 const URL = "http://localhost:8001/data/";
 
@@ -22,6 +25,9 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [open, setOpen] = useState(false);
+  const [succesAlertText, setsuccesAlertText] = useState("");
+  const [severity, setseverity] = useState("");
 
   useEffect(() => {
     console.log("Welcome to the best todo app!");
@@ -49,17 +55,29 @@ function App() {
     });
   }, [todos, searchTerm]);
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   async function removeTodo(todoId) {
     await axios.delete(URL + todoId);
     const newTodos = todos.filter((todo) => todo.id !== todoId);
     setTodos(newTodos);
+    setseverity("success");
+    setsuccesAlertText("Todo Removed Successfully!");
+    setOpen(true);
   }
 
-  async function addTodo(title) {
+  async function addTodo(title, personName) {
     const newTodo = {
       id: makeId(10),
       title,
       isComplete: false,
+      labels: personName,
     };
 
     try {
@@ -68,8 +86,14 @@ function App() {
       setTodos((prevTodos) => {
         return [...prevTodos, newTodo];
       });
+
+      setseverity("success");
+      setsuccesAlertText("Todo Added Successfully!");
+      setOpen(true);
     } catch (err) {
-      alert(err);
+      setseverity("error");
+      setsuccesAlertText("There was an error adding the todo");
+      setOpen(true);
     }
   }
 
@@ -86,17 +110,18 @@ function App() {
           return todo;
         });
       });
+      setseverity("success");
+      setsuccesAlertText("Todo Updated Successfully!");
+      setOpen(true);
     } catch (err) {
-      alert(err);
+      setseverity("error");
+      setsuccesAlertText("There was an error updating this todo");
+      setOpen(true);
     }
   }
 
   function onChange(e) {
     setSearchTerm(e.target.value);
-  }
-
-  if (loading) {
-    return <div>Loading...</div>;
   }
 
   if (error) {
@@ -111,7 +136,23 @@ function App() {
 
   return (
     <>
+      <ResponsiveAppBar />
       <main className="container">
+        <Snackbar
+          open={open}
+          autoHideDuration={3000}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert
+            onClose={handleClose}
+            severity={severity}
+            variant="filled"
+            sx={{ width: "100%" }}
+          >
+            {succesAlertText}
+          </Alert>
+        </Snackbar>
         <div className="left">
           <div className="flex">
             <img
@@ -127,6 +168,7 @@ function App() {
             todos={filteredTodos}
             updateTodo={updateTodo}
             removeTodo={removeTodo}
+            loading={loading}
           />
         </div>
 

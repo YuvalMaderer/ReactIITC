@@ -1,21 +1,32 @@
+import Button from "@mui/material/Button";
+import Checkbox from "@mui/material/Checkbox";
+import Tooltip from "@mui/material/Tooltip";
+
 function TodoItem({ todo, updateTodo, removeTodo }) {
   return (
     <li className="todo-card">
-      <input
-        type="checkbox"
-        id={todo.id}
-        checked={todo.isComplete}
+      <Checkbox
+        defaultChecked={todo.isComplete}
         onChange={() => updateTodo(todo)}
-      />
-      <label
-        className={`${todo.isComplete ? "checked" : ""} input-label`}
-        htmlFor={todo.id}
-      >
-        {todo.title}
-      </label>
-      <button onClick={() => removeTodo(todo.id)} className="button-29 remove">
-        remove todo
-      </button>
+        id={todo.id}
+      ></Checkbox>
+      <Tooltip title={todo.title}>
+        <label
+          className={`${todo.isComplete ? "checked" : ""} input-label`}
+          htmlFor={todo.id}
+        >
+          {todo.title.slice(0, 40) + (todo.title.length > 40 ? "..." : "")}
+        </label>
+      </Tooltip>
+      <Tooltip title="Delete">
+        <Button
+          variant="contained"
+          color="error"
+          onClick={() => removeTodo(todo.id)}
+        >
+          Remove Todo
+        </Button>
+      </Tooltip>
     </li>
   );
 }
