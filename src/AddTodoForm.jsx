@@ -96,6 +96,7 @@ function AddTodoForm(props) {
       >
         <InputLabel id="demo-multiple-chip-label">Categories</InputLabel>
         <Select
+          required
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
           multiple

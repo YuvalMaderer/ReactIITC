@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 function Filter({ searchTerm, onChange, handleChange }) {
   return (
     <div className="search">
-      <p>Search Items:</p>
+      <p className="search-p">Search Items:</p>
       <TextField
         id="outlined-basic"
         label="Search in todos..."

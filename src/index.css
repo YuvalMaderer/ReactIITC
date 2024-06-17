@@ -64,7 +64,7 @@ label.checked {
   color: #999;
 }
 
-p {
+.search-p {
   margin: 5px 0;
   font-size: 16px;
   color: #555;
