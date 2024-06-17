@@ -1,21 +1,13 @@
 {
   "data": [
     {
-      "id": "2",
-      "title": "Build a Todo App",
-      "isComplete": true,
-      "labels": [
-        "work",
-        "home"
-      ]
-    },
-    {
       "id": "3",
       "title": "Read JavaScript Documentation",
       "isComplete": true,
       "labels": [
         "school"
-      ]
+      ],
+      "description": "Go through the official JavaScript documentation to understand core concepts, syntax, and advanced topics."
     },
     {
       "id": "4",
@@ -24,7 +16,8 @@
       "labels": [
         "work",
         "school"
-      ]
+      ],
+      "description": "Develop unit tests for the current codebase to ensure that individual parts of the application work as intended."
     },
     {
       "id": "5",
@@ -32,7 +25,8 @@
       "isComplete": false,
       "labels": [
         "work"
-      ]
+      ],
+      "description": "Integrate context management in the application to handle state more effectively and reduce prop drilling."
     },
     {
       "id": "6",
@@ -40,7 +34,8 @@
       "isComplete": true,
       "labels": [
         "home"
-      ]
+      ],
+      "description": "Design and build a personal portfolio website to showcase projects, skills, and achievements."
     },
     {
       "id": "7",
@@ -49,7 +44,8 @@
       "labels": [
         "school",
         "work"
-      ]
+      ],
+      "description": "Study TypeScript to improve coding skills and utilize static type-checking in JavaScript applications."
     },
     {
       "id": "9",
@@ -57,7 +53,8 @@
       "isComplete": false,
       "labels": [
         "work"
-      ]
+      ],
+      "description": "Analyze and enhance the application's performance by identifying bottlenecks and implementing optimizations."
     },
     {
       "id": "10",
@@ -66,26 +63,18 @@
       "labels": [
         "work",
         "home"
-      ]
+      ],
+      "description": "Deploy the application to a live production environment, ensuring that all features are functioning correctly."
     },
     {
       "id": "Ek53SEvl4q",
       "title": "Learn React",
-      "isComplete": true,
+      "isComplete": false,
       "labels": [
         "school",
         "work"
-      ]
-    },
-    {
-      "id": "UyKol5axjU",
-      "title": "dsgsfdfsd",
-      "isComplete": false,
-      "labels": [
-        "Business",
-        "Personal Life",
-        "Work"
-      ]
+      ],
+      "description": "Learn React framework to build dynamic and responsive user interfaces for web applications."
     }
   ]
 }

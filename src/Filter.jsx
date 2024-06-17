@@ -1,6 +1,6 @@
 import TextField from "@mui/material/TextField";
 
-function Filter({ searchTerm, onChange, handleChange }) {
+function Filter({ searchTerm, onChange }) {
   return (
     <div className="search">
       <p className="search-p">Search Items:</p>

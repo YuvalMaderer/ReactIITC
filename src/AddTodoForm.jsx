@@ -45,13 +45,16 @@ function getStyles(name, personName, theme) {
 
 function AddTodoForm(props) {
   const inputRef = useRef(null);
+  const inputDescriptionRef = useRef(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const inputValue = inputRef.current.value;
-    props.addTodo(inputValue, personName);
+    const inputDescriptionValue = inputDescriptionRef.current.value;
+    props.addTodo(inputValue, personName, inputDescriptionValue);
     setPersonName([]);
     inputRef.current.value = "";
+    inputDescriptionRef.current.value = "";
     inputRef.current.focus();
   };
 
@@ -71,7 +74,11 @@ function AddTodoForm(props) {
   return (
     <form
       onSubmit={handleSubmit}
-      style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        flexWrap: "wrap",
+      }}
     >
       <TextField
         id="outlined-basic"
@@ -122,13 +129,26 @@ function AddTodoForm(props) {
             </MenuItem>
           ))}
         </Select>
+        <TextField
+          id="outlined-basic"
+          label="Enter description here..."
+          variant="outlined"
+          inputRef={inputDescriptionRef}
+          sx={{
+            width: "100%",
+            maxWidth: "300px",
+            marginBottom: "10px",
+            marginRight: "10px",
+          }}
+          required
+        />
       </FormControl>
       <Tooltip title="Add Todo">
         <Button
           variant="contained"
           color="primary"
           type="submit"
-          sx={{ height: ITEM_HEIGHT }}
+          sx={{ height: ITEM_HEIGHT, width: "300px" }}
         >
           Add Todo
         </Button>
