@@ -52,7 +52,6 @@ function TodoDetailsPage() {
     }
   };
 
-  console.log(todoDetails.labels);
   return (
     <div className="container-2">
       <div className="detail-container">
@@ -79,7 +78,7 @@ function TodoDetailsPage() {
             </>
           )}
         </div>
-        <p>Labels: {todoDetails.labels}</p>
+        <p>Labels: {todoDetails.labels?.join(", ")}</p>
         <p>Description: {todoDetails.description}</p>
       </div>
     </div>

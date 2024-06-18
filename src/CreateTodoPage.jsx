@@ -68,7 +68,7 @@ function CreateTodoPage() {
         </Alert>
       </Snackbar>
       <div className="container-2">
-        <div className="detail-container">
+        <div className="add-todo-container">
           <AddTodoForm addTodo={addTodo} />
         </div>
       </div>

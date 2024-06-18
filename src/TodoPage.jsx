@@ -28,10 +28,6 @@ function TodoPage() {
   const [severity, setseverity] = useState("");
 
   useEffect(() => {
-    console.log("Welcome to the best todo app!");
-  }, []);
-
-  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(URL);

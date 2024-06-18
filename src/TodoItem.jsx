@@ -20,7 +20,12 @@ function TodoItem({ todo, updateTodo, removeTodo }) {
           {todo.title.slice(0, 40) + (todo.title.length > 40 ? "..." : "")}
         </label>
       </Tooltip>
-      <Button variant="contained" component={Link} to={todo.id}>
+      <Button
+        variant="contained"
+        component={Link}
+        to={todo.id}
+        sx={{ marginRight: "7px" }}
+      >
         <InfoIcon />
       </Button>
       <Tooltip title="Delete">

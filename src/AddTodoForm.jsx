@@ -135,6 +135,7 @@ function AddTodoForm(props) {
           variant="outlined"
           inputRef={inputDescriptionRef}
           sx={{
+            marginTop: "10px",
             width: "100%",
             maxWidth: "300px",
             marginBottom: "10px",

@@ -39,6 +39,20 @@ h1 {
   }
 }
 
+.add-todo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 30px 50px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  gap: 50px;
+}
+
 .container-2 {
   display: flex;
   justify-content: center;
