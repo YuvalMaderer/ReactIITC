@@ -7,17 +7,6 @@ import { Link } from "react-router-dom";
 
 const URL = "http://localhost:8001/data/";
 
-// function makeId(length) {
-//   let result = "";
-//   const characters =
-//     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-//   const charactersLength = characters.length;
-//   for (let i = 0; i < length; i++) {
-//     result += characters.charAt(Math.floor(Math.random() * charactersLength));
-//   }
-//   return result;
-// }
-
 function TodoPage() {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -65,31 +54,6 @@ function TodoPage() {
     setsuccesAlertText("Todo Removed Successfully!");
     setOpen(true);
   }
-
-  //   async function addTodo(title, personName) {
-  //     const newTodo = {
-  //       id: makeId(10),
-  //       title,
-  //       isComplete: false,
-  //       labels: personName,
-  //     };
-
-  //     try {
-  //       await axios.post(URL, newTodo);
-
-  //       setTodos((prevTodos) => {
-  //         return [...prevTodos, newTodo];
-  //       });
-
-  //       setseverity("success");
-  //       setsuccesAlertText("Todo Added Successfully!");
-  //       setOpen(true);
-  //     } catch (err) {
-  //       setseverity("error");
-  //       setsuccesAlertText("There was an error adding the todo");
-  //       setOpen(true);
-  //     }
-  //   }
 
   async function updateTodo(todoToUpdate) {
     try {

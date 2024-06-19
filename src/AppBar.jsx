@@ -45,7 +45,7 @@ function ResponsiveAppBar() {
             variant="h6"
             noWrap
             component={Link}
-            to="Home"
+            to="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -119,7 +119,7 @@ function ResponsiveAppBar() {
               <Button
                 key={page}
                 component={Link}
-                to={page}
+                to={page === "Home" ? "/" : page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >

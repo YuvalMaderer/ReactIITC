@@ -11,12 +11,12 @@ function App() {
     <>
       <ResponsiveAppBar />
       <Routes>
-        <Route path="/Home" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/Todo">
           <Route index element={<TodoPage />} />
           <Route path=":todoId" element={<TodoDetailsPage />} />
+          <Route path="Add-Todo" element={<CreateTodoPage />} />
         </Route>
-        <Route path="/Add-Todo" element={<CreateTodoPage />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </>
