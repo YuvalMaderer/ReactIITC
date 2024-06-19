@@ -120,7 +120,7 @@ function TodoPage() {
               />
               <h1>TODOS!</h1>
             </div>
-            <Button variant="contained" component={Link} to="/Add-Todo">
+            <Button variant="contained" component={Link} to="Add-Todo">
               Create Todo!
             </Button>
             <br />
